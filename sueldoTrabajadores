@@ -1,0 +1,105 @@
+package sueldotrabajadores;
+
+import java.util.Scanner;
+
+public class SueldoTrabajadores {
+
+    public static void main(String[] args) {
+   
+    Scanner input = new Scanner(System.in);
+    
+        String nombre[];
+        int edad[];
+        int sueldo[];
+        nombre = new String[5];
+        edad = new int[5];
+        sueldo = new int[5];
+        int i = 0;
+        int k = 0;
+        int j = 0;
+        int n = 0;
+        int aux1;
+        String aux2;
+        int aux3;
+        int confirmar = 1;
+        
+        
+        
+        do {
+           
+          confirmar = 1;
+          
+          System.out.println("Ingrese nombre de el trabajor "+ (i+1));
+          nombre[i] = input.next();
+          
+          
+            do {
+                
+          System.out.println("Ingrese edad de el trabajador "+ (i+1));
+          edad[i] = input.nextInt();
+          
+                if (edad[i] >= 18 ) {
+                    
+                    if (edad[i] <= 65) {
+                        confirmar = 0;
+                        
+                    }
+                
+                }
+          
+            } while (confirmar == 1);
+      
+          
+          
+          
+            do {
+                
+          System.out.println("Ingrese sueldo de el trabajador "+ (i+1));
+          sueldo[i] = input.nextInt();
+          
+            } while (sueldo[i] < 400000);
+ 
+          
+          i = i + 1;
+                    
+        } while (i < 5);
+        
+        
+        do {
+            j = k + 1;
+            
+            do {
+                
+                if (sueldo[k] < sueldo[j]) {
+                    
+                    aux1= sueldo[k];
+                    sueldo[k] = sueldo[j];
+                    sueldo[j] = aux1;
+                    
+                    aux2 = nombre[k];
+                    nombre[k] = nombre[j];
+                    nombre[j] = aux2;
+                    
+                    aux3 = edad[k];
+                    edad[k] = edad[j];
+                    edad[j] = aux3;
+                }
+                
+                j++;
+                
+            } while (j <= 4);
+            
+            k++;
+            
+        } while (k <= 3);
+        
+        
+for  (int x=0; x<5; x++)
+  System.out.println("=================================================\n"
+  + "Nombre de el trabajador: " + nombre[x]
+  + " Edad de el trabajador: " + edad[x]
+  + " Sueldo de el trabajador: " + sueldo[x]
+  );      
+
+    }  
+}
