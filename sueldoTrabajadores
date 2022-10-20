@@ -6,6 +6,12 @@ public class SueldoTrabajadores {
 
     public static void main(String[] args) {
    
+        
+        System.out.println("===================================\n"
+        +"            Bienvenido\n"
+        +"===================================\n"
+        );    
+        
     Scanner input = new Scanner(System.in);
     
         String nombre[];
