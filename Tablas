@@ -1,0 +1,72 @@
+package ciclorepetitivo;
+
+import java.util.Scanner;
+
+public class CicloRepetitivo {
+
+    public static void main(String[] args) {
+        
+        int valorTabla;
+        int opc;
+        int b = 1;
+        int c = 1;
+        Scanner input = new Scanner(System.in);
+
+        do {
+            
+       
+            System.out.println("========Tablas========");
+            System.out.println("Ingrese valor de la tabla");
+            valorTabla = input.nextInt();
+
+            do  {
+                System.out.println("========TIPO DE CICLO========\n"
+                +"1.FOR\n"
+                +"2.WHILE\n"   
+                +"3.DO\n"
+                +"4.SALIR\n"
+                +"========Selecione opcion========");
+
+                opc = input.nextInt();
+            }
+            while (opc < 1 && opc > 4);
+
+
+            switch (opc) {
+                case 1 -> {
+                    System.out.println("========Tabla de el "+ valorTabla + "========");
+
+                    for (int i = 1; i < 11; i++) {
+                        System.out.println(valorTabla + " * " + i + " = "+ valorTabla * i  );
+                    }
+                }
+
+                case 2 -> {
+                    System.out.println("========Tabla de el "+ valorTabla + "========");
+
+                    while (b < 11) {
+                        System.out.println(valorTabla + " * " + b + " = "+ valorTabla * b  );
+                        b++;
+                    }
+                }
+
+                case 3 -> {
+                    System.out.println("========Tabla de el "+ valorTabla + "========");
+
+                    do {
+                        System.out.println(valorTabla + " * " + c + " = "+ valorTabla * c  );
+                        c++;
+                    } while (c < 11);
+                }
+
+                case 4 -> {
+                }
+
+                default -> System.out.println("Opcion invalida");
+            }
+        
+        } while (opc != 4);
+        
+    }
+    
+}
