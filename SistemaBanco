@@ -1,0 +1,43 @@
+package sistemabanco;
+
+import java.util.Scanner;
+
+
+public class SistemaBanco {
+
+    public static void main(String[] args) {
+ 
+        String usuario = "yo";
+        String user;
+        int contraseña = 2410;
+        int password;
+        int tries = 1;
+        int confirmador = 1;
+        
+        Scanner input = new Scanner(System.in);
+        
+        
+        System.out.println("=================Bienvenido al banco uwu =================\n"
+        +"\n"
+        +"=============login=============\n"
+                
+        +"Ingrese usuario");
+        user = input.next();
+        
+        
+        System.out.println("Ingrese clave");
+        password = input.nextInt();
+        
+        do {
+            
+            
+            
+            
+        } while (tries < 4 || confirmador == 1 );
+        
+        
+        
+        
+    }
+    
+}
