@@ -1,27 +1,27 @@
-package sistemabanco;
+package com.mycompany.sistemabanco;
 
 import java.util.Scanner;
-
 
 public class SistemaBanco {
 
     public static void main(String[] args) {
- 
+      
+        
         String usuario = "yo";
         String user;
         int contraseña = 2410;
         int password;
         int tries = 1;
-        int confirmador = 1;
+        int confirmador = 0;
         
         Scanner input = new Scanner(System.in);
         
         
         System.out.println("=================Bienvenido al banco uwu =================\n"
         +"\n"
-        +"=============login=============\n"
-                
-        +"Ingrese usuario");
+        +"=============login=============");       
+        System.out.println("Ingrese nombre de usuario");
+
         user = input.next();
         
         
@@ -30,14 +30,38 @@ public class SistemaBanco {
         
         do {
             
-            
-            
-            
-        } while (tries < 4 || confirmador == 1 );
+            if (user.equals(usuario)){ 
+                
+                if (password == contraseña){
+                    
+                  confirmador = 1;
+                  
+                } 
+                else{
+                tries ++;
+                 System.out.println("clave incorrecta");
+                 System.out.println("Intentos restantes: "+ (4 - tries) );
+                 System.out.println("Ingrese clave");
+                 password = input.nextInt();
+                }
+             
+            }
+            else{
+                
+            System.out.println("======= usuario no encontrado =======");
+            System.out.println("Ingrese nombre de usuario");
+            user = input.next();
         
         
+            System.out.println("Ingrese clave");
+            password = input.nextInt();
+                    
+            }
+            
+            
+        } while (tries < 3 || confirmador == 1 );
         
+        System.out.println("==========Bienvenido "+ usuario + "==========");
         
     }
-    
 }
