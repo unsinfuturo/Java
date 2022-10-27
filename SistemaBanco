@@ -14,11 +14,12 @@ public class SistemaBanco {
         int tries = 1;
         int confirmador = 0;
         int opcion;
+        int sueldo;
         
         Scanner input = new Scanner(System.in);
         
         
-        System.out.println("=================Bienvenido al banco uwu =================\n"
+        System.out.println("================= Banco =================\n"
         +"\n"
         +"=============login=============");       
         System.out.println("Ingrese nombre de usuario");
