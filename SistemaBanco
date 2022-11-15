@@ -25,10 +25,10 @@ public class SistemaBanco {
         int saldoFinal = 0;
         int realizar = 0;
         boolean cambioClave = false;
+        int totalSaldo = 1000000;
+        int depositoDinero = 0;
+        int otraOperacion = 0;
         
-        
-        int a = 5 / 3;
-        System.out.println(a);
         
         Scanner input = new Scanner(System.in);
         
@@ -76,12 +76,13 @@ public class SistemaBanco {
                     
             }
             
-        } while (tries < 4 );
+        } while (tries < 3 );
         
 
         if (confirmador == 1) {
             
             do {
+                System.out.println(totalSaldo);
                 System.out.println("==========Bienvenido "+ usuario + " ==========\n"
                 + "1. Consulta de saldo\n"
                 + "2. Giro de dinero\n"
@@ -98,7 +99,7 @@ public class SistemaBanco {
 
                     case 1 -> {
                         System.out.println("============================\n"
-                        + "Saldo disponible: " + saldo + "\n"
+                        + "Saldo disponible: " + totalSaldo + "\n"
                         + "============================"
                         );
                     }
@@ -107,6 +108,16 @@ public class SistemaBanco {
                         
                         do {
                             
+                            giroDinero = 0;
+                            veinteMil = 0;
+                            diezMil = 0;
+                            cincoMil = 0;
+                            dosMil = 0;
+                            unMil = 0;
+                            saldoInicial = 0;
+                            saldoFinal = 0;
+                            realizar = 0;
+
                             System.out.println("Ingrese dinero a girar\n"
                                     +"============================\n"
                                     + "Minimo: $1000\n"
@@ -139,31 +150,72 @@ public class SistemaBanco {
                             unMil = giroDinero / 1000;
                             giroDinero = giroDinero - (unMil * 1000);
                         }
+                         
+                        saldoFinal = saldoInicial - giroDinero;
+
                          if (giroDinero != 0 ) {
                             saldoFinal = saldoInicial - giroDinero;
-                             System.out.println("El maximo de dinero a entregar es: " + saldoFinal);
+                            System.out.println("El maximo de dinero a entregar es: " + saldoFinal);
                         }
-                         
-                         System.out.println("¿Desea realizar la operacion?"
-                         + "1. SI\n"
-                         + "2. NO"
-                         );
-                         
-                         realizar = input.nextInt();
-                         
-                         if (realizar == 1) {
+                         do {
                              
-                         System.out.println("La cantidad de billetes de $ a entregar es: " + "\n"
-                         +  "La cantidad de billetes de $20000 a entregar es: " + veinteMil + "\n"
-                         +  "La cantidad de billetes de $10000 a entregar es: " + diezMil +"\n"
-                         +  "La cantidad de billetes de $5000 a entregar es: " + cincoMil +"\n"
-                         +  "La cantidad de billetes de $2000 a entregar es: " + dosMil +"\n"
-                         +  "La cantidad de billetes de $1000 a entregar es: " + unMil +"\n"
+                            System.out.println("=============================\n"
+                                 + "¿Desea realizar la operacion?\n"
+                                 + "=============================\n"
+                                 + "1. SI\n"
+                                 + "2. NO"
+                                    
+                             );
+                            realizar = input.nextInt();
                          
+                        } while (realizar != 1 && realizar !=2);
+                     
+                         if (realizar == 1) {
+                         
+                            totalSaldo = totalSaldo - saldoFinal;
+                             
+                            System.out.println("|=============================================|\n"
+                            +  "La cantidad de billetes de $20000 a entregar es: " + veinteMil + "\n"
+                            +  "La cantidad de billetes de $10000 a entregar es: " + diezMil +"\n"
+                            +  "La cantidad de billetes de $5000 a entregar es: " + cincoMil +"\n"
+                            +  "La cantidad de billetes de $2000 a entregar es: " + dosMil +"\n"
+                            +  "La cantidad de billetes de $1000 a entregar es: " + unMil +"\n"
+
                          );
-                        }                        
+                            
+                        }    
+                         
                     }
                     
+                    case 3 -> {
+                     
+                        do {
+                            
+                            System.out.println("Su saldo actual es " + totalSaldo + "\n"
+                                +"============================================\n"
+                                + "Ingrese el monto a depositar "
+                            );
+                        
+                            depositoDinero = input.nextInt();
+                            
+                            if (depositoDinero > 1000 && depositoDinero < 200000){
+                            
+                                totalSaldo = totalSaldo + depositoDinero;
+                                System.out.println("Su saldo actual es: " +  totalSaldo);
+                                
+                              
+                            }else{
+                            
+                                System.out.println("Monto a depositar es incorrecto\n "
+                                + "Debe ser un valor entre 1000$ y 200000$"
+                                +"============================================"
+                                );
+                            }
+                            
+                         }while (depositoDinero < 1000 || depositoDinero > 200000);
+                        
+                    }
+
                     case 4 -> {
                         
                         tries = 1;
@@ -184,11 +236,11 @@ public class SistemaBanco {
                             { 
                                tries++;
                                System.out.println("clave incorrecta\n"
-                              +"Intentos restantes: "+ (4 - tries) + "\n" 
+                              +"Intentos restantes: "+ (5 - tries) + "\n" 
                               +"=========================\n"        
                               +"Ingrese clave");
                                
-                               password = input.nextLine();
+                               password = input.next();
                                
                             }
                             
@@ -196,12 +248,15 @@ public class SistemaBanco {
                         
                         
                          tries = 4;
-                         
-                        do{
                         
-                            if (cambioClave == true){
+                        if (cambioClave == true){
+                            
+                            do{
+                        
 
                                 System.out.println("Ingrese nueva clave\n"
+                                +"========================\n"
+                                +"Clave debe de tener 4 digitos\n"
                                 +"========================"
                                 );
                                 
@@ -213,42 +268,68 @@ public class SistemaBanco {
                                 
                                 confirmadorClave = input.next();
                                 
-                                if (password.length() == 4){
+                                if (password.equals(confirmadorClave)){
                                     
-                                    password = contraseña;
-                                    System.out.println("=======================\n"
-                                            + "Cambio exitoso"
-                                    );
-                                    tries = 0;
+                                    if (password.length() == 4){
+
+                                        contraseña = password;
+                                        System.out.println("=======================\n"
+                                                + "Cambio exitoso"
+                                        );
+                                        tries = 0;
+
+                                    } else{
+
+                                        tries--;
+
+                                        System.out.println("Clave erronea\n"
+                                                + "Intentos disponibles: " + tries +"\n"
+                                                + "=================================="
+                                        );
+
+                                    }
                                     
                                 } else{
-                                 
-                                    tries--;
-                                    
-                                    System.out.println("Clave erronea\n"
-                                            + "Intentos disponibles: " + tries +"\n"
-                                            + "=================================="
-                                    );
-                                    
-                                }
+                                
+                                tries--;
 
-                          }
-                            
-                        }while(tries > 0);
-                        
-                        contraseña = password;
-                        
+                                        System.out.println("Clave no coincide\n"
+                                                + "Intentos disponibles: " + tries +"\n"
+                                                + "=================================="
+                                        );
+                                
+                                }
+                                
+                            }while(tries > 0);
+                        }
+                                                    
                     }
                     
                 }
                 
+                do {
+                    
+                } while (otraOperacion != 1 && otraOperacion != 2);
+                System.out.println("¿Desea realizar otra operacion?\n"
+                        + "1. SI\n"
+                        + "2. NO\n"
+                );
+                
+               otraOperacion = input.nextInt();
+               
+               if (otraOperacion == 2){
+               
+                   opcion = 5;
+                   
+               }
+                
             } while (opcion != 5);
             
-            
+            System.out.println("BYE BYE");
             
         }else {
         
-            System.out.println("Cuenta bloqueada bloqueada\n"
+            System.out.println("Tarjeta bloqueada bloqueada\n"
                     + "==============================\n"
                     + "Dirigase a su banco para desbloquear");
         }
