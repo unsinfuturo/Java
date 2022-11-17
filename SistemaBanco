@@ -6,17 +6,20 @@ public class SistemaBanco {
 
     public static void main(String[] args) {
       
+
         String usuario = "yo";
-        String user = "";
+        String usuarioComparador = "";
         String claveATexto;
-        int cambioClave = 0;
+        
+        boolean inicioCorrecto = false;
+        boolean confirmadorCambioClave = false;
+        
         int contraseña = 2410;
-        int password;
-        int confirmadorClave;
+        int confirmarCambioClave = 0;
+        int contraseñaComparador;
+        int comparadorNuevaContraseña;
         int intentos = 0;
-        int confirmador = 0;
         int opcion = 0;
-        int saldo = 500000;
         int giroDinero = 0;
         int veinteMil = 0;
         int diezMil = 0;
@@ -25,8 +28,7 @@ public class SistemaBanco {
         int unMil = 0;
         int saldoInicial = 0;
         int saldoFinal = 0;
-        int realizar = 0;
-        boolean confirmadorCambioClave = false;
+        int confirmarGiro = 0;
         int totalSaldo = 1000000;
         int depositoDinero = 0;
         int otraOperacion = 0;
@@ -45,16 +47,16 @@ public class SistemaBanco {
         System.out.println("Ingrese nombre de usuario\n"
         + "---------------------------" 
         );
-        user = input.next();
+        usuarioComparador = input.next();
         
         System.out.println("Ingrese clave\n"
         +"---------------------------"
         );
-        password = input.nextInt();
+        contraseñaComparador = input.nextInt();
         
         do {
             
-            if (!user.equals(usuario)){
+            if (!usuarioComparador.equals(usuario)){
                 
                 intentos++;
                 
@@ -64,16 +66,16 @@ public class SistemaBanco {
                 System.out.println("Ingrese nombre de usuario\n"
                 +"---------------------------"
                 );
-                user = input.next();
+                usuarioComparador = input.next();
         
                 System.out.println("Ingrese clave\n"
                 +"---------------------------"
                 );
-                password = input.nextInt();
+                contraseñaComparador = input.nextInt();
                 
             }else{
             
-                if (password != contraseña){
+                if (contraseñaComparador != contraseña){
                 
                     intentos++;
                     
@@ -83,18 +85,18 @@ public class SistemaBanco {
                     System.out.println("Ingrese clave\n"
                     +"---------------------------"
                     );
-                    password = input.nextInt();
+                    contraseñaComparador = input.nextInt();
 
                 }
                 
             } 
            
             
-            if (user.equals(usuario)){ 
+            if (usuarioComparador.equals(usuario)){ 
                 
-                if (password == contraseña){
+                if (contraseñaComparador == contraseña){
                     
-                  confirmador = 1;
+                  inicioCorrecto = true;
                   intentos = 4;
                   
                 } 
@@ -104,7 +106,7 @@ public class SistemaBanco {
         } while (intentos <= 1 );
         
 
-        if (confirmador == 1) {
+        if (inicioCorrecto == true) {
             
             do {
                 System.out.println("========== Bienvenido "+ usuario + " ==========\n"
@@ -140,7 +142,7 @@ public class SistemaBanco {
                             unMil = 0;
                             saldoInicial = 0;
                             saldoFinal = 0;
-                            realizar = 0;
+                            confirmarGiro = 0;
 
                             System.out.println("Ingrese dinero a girar\n"
                                     +"============================\n"
@@ -185,18 +187,18 @@ public class SistemaBanco {
                          do {
                              
                             System.out.println("=============================\n"
-                                 + "¿Desea realizar la operacion?\n"
-                                 + "---------------------------\n"
-                                 + "1. SI\n"
-                                 + "2. NO"
+                            + "¿Desea realizar la operacion?\n"
+                            + "---------------------------\n"
+                            + "1. SI\n"
+                            + "2. NO"
                                     
-                             );
+                            );
                             
-                            realizar = input.nextInt();
+                            confirmarGiro = input.nextInt();
                          
-                        } while (realizar != 1 && realizar !=2);
+                        } while (confirmarGiro != 1 && confirmarGiro !=2);
                      
-                         if (realizar == 1) {
+                         if (confirmarGiro == 1) {
                          
                             totalSaldo = totalSaldo - saldoFinal;
                              
@@ -231,7 +233,7 @@ public class SistemaBanco {
                             if (depositoDinero > 1000 && depositoDinero < 200000){
                             
                                 totalSaldo = totalSaldo + depositoDinero;
-                                System.out.println("Su saldo actual es: " +  totalSaldo);
+                                System.out.println("Saldo despues de el deposito: " +  totalSaldo);
                                 
                               
                             }else{
@@ -251,11 +253,11 @@ public class SistemaBanco {
                         intentos = 0;
                         
                         System.out.println("Ingrese clave actual");
-                        password = input.nextInt();
+                        contraseñaComparador = input.nextInt();
                         
                         do{
                             
-                            if (password != contraseña){
+                            if (contraseñaComparador != contraseña){
                                 
                                 intentos++;
 
@@ -266,11 +268,11 @@ public class SistemaBanco {
                                 +"---------------------------"
                                 );
                                
-                               password = input.nextInt();
+                               contraseñaComparador = input.nextInt();
                                
                             }
                         
-                            if (password == contraseña){
+                            if (contraseñaComparador == contraseña){
                                 
                                confirmadorCambioClave = true;
                                intentos = 2;
@@ -283,7 +285,7 @@ public class SistemaBanco {
                         if (confirmadorCambioClave == true){
                             System.out.println("=============================");
                             
-                            cambioClave = 0;
+                            confirmarCambioClave = 0;
                             
                             do{
                        
@@ -293,19 +295,19 @@ public class SistemaBanco {
                                 +"---------------------------"
                                 );
                                 
-                                password = input.nextInt();
+                                contraseñaComparador = input.nextInt();
                                 
                                 System.out.println("========================\n"
                                 +"Ingrese clave nuevamente\n"
                                 +"---------------------------"
                                 );
                                 
-                                confirmadorClave = input.nextInt();
+                                comparadorNuevaContraseña = input.nextInt();
                                 
-                                claveATexto = String.valueOf(password);
+                                claveATexto = String.valueOf(contraseñaComparador);
 
                                 
-                                if (password != confirmadorClave){
+                                if (contraseñaComparador != comparadorNuevaContraseña){
 
                                     System.out.println("==================================\n"
                                     +"Claves no coinciden\n"
@@ -330,13 +332,13 @@ public class SistemaBanco {
                                             + "3.SALIR\n"
                                             +"---------------------------"    
                                             );
-                                            cambioClave = input.nextInt();
+                                            confirmarCambioClave = input.nextInt();
                                             
-                                        } while (cambioClave != 1 && cambioClave != 2 && cambioClave != 3);
+                                        } while (confirmarCambioClave != 1 && confirmarCambioClave != 2 && confirmarCambioClave != 3);
 
                                         
-                                        if (cambioClave == 1) {
-                                            contraseña = password;
+                                        if (confirmarCambioClave == 1) {
+                                            contraseña = contraseñaComparador;
                                             System.out.println("=======================\n"
                                             + "Cambio exitoso"
                                             );
@@ -347,13 +349,13 @@ public class SistemaBanco {
                                     
                                 }
  
-                            }while(cambioClave != 1 && cambioClave != 3);
+                            }while(confirmarCambioClave != 1 && confirmarCambioClave != 3);
                             
                         }   
                         
                     }   
    
-                    
+     
                 }
             
                 if (opcion != 5) {
