@@ -8,10 +8,12 @@ public class SistemaBanco {
       
         String usuario = "yo";
         String user = "";
-        String contraseña = "2410";
-        String password = "";
-        String confirmadorClave = "";
-        int tries = 0;
+        String claveATexto;
+        int cambioClave = 0;
+        int contraseña = 2410;
+        int password;
+        int confirmadorClave;
+        int intentos = 0;
         int confirmador = 0;
         int opcion = 0;
         int saldo = 500000;
@@ -24,10 +26,12 @@ public class SistemaBanco {
         int saldoInicial = 0;
         int saldoFinal = 0;
         int realizar = 0;
-        boolean cambioClave = false;
+        boolean confirmadorCambioClave = false;
         int totalSaldo = 1000000;
         int depositoDinero = 0;
         int otraOperacion = 0;
+        
+       
         
         
         Scanner input = new Scanner(System.in);
@@ -35,55 +39,75 @@ public class SistemaBanco {
         
         System.out.println("================= Banco =================\n"
         +"\n"
-        +"=============login=============");       
-        System.out.println("Ingrese nombre de usuario");
-
+        +"============= login ============="
+        );  
+        
+        System.out.println("Ingrese nombre de usuario\n"
+        + "---------------------------" 
+        );
         user = input.next();
         
-        System.out.println("Ingrese clave");
-        password = input.next();
+        System.out.println("Ingrese clave\n"
+        +"---------------------------"
+        );
+        password = input.nextInt();
         
         do {
             
+            if (!user.equals(usuario)){
+                
+                intentos++;
+                
+                System.out.println("======= usuario no encontrado =======");
+                System.out.println("Intentos restantes: " + (3 - intentos) );
+
+                System.out.println("Ingrese nombre de usuario\n"
+                +"---------------------------"
+                );
+                user = input.next();
+        
+                System.out.println("Ingrese clave\n"
+                +"---------------------------"
+                );
+                password = input.nextInt();
+                
+            }else{
+            
+                if (password != contraseña){
+                
+                    intentos++;
+                    
+                    System.out.println("======= clave incorrecta =======");
+                    System.out.println("Intentos restantes: " + (3 - intentos) );
+                    
+                    System.out.println("Ingrese clave\n"
+                    +"---------------------------"
+                    );
+                    password = input.nextInt();
+
+                }
+                
+            } 
+           
+            
             if (user.equals(usuario)){ 
                 
-                if (password.equals(contraseña)){
+                if (password == contraseña){
                     
                   confirmador = 1;
-                  tries = 4;
+                  intentos = 4;
                   
                 } 
-                else{
-                tries ++;
-                 System.out.println("clave incorrecta");
-                 System.out.println("Intentos restantes: "+ (4 - tries) );
-                 System.out.println("Ingrese clave");
-                 password = input.next();
-                }
-             
             }
-            else{
-            tries++;
-            System.out.println("======= usuario no encontrado =======");
-            System.out.println("Intentos restantes: "+ (4 - tries) );
-
-            System.out.println("Ingrese nombre de usuario");
-            user = input.next();
         
-        
-            System.out.println("Ingrese clave");
-            password = input.next();
-                    
-            }
-            
-        } while (tries < 3 );
+                        
+        } while (intentos <= 1 );
         
 
         if (confirmador == 1) {
             
             do {
-                System.out.println(totalSaldo);
-                System.out.println("==========Bienvenido "+ usuario + " ==========\n"
+                System.out.println("========== Bienvenido "+ usuario + " ==========\n"
                 + "1. Consulta de saldo\n"
                 + "2. Giro de dinero\n"
                 + "3. Deposito de dinero\n"
@@ -91,7 +115,7 @@ public class SistemaBanco {
                 + "5. Salir\n"
                 + "============================\n"
                 + "Seleccion una opcion\n"
-                + "============================"
+                +"---------------------------"
                 );
                 opcion = input.nextInt();
 
@@ -122,7 +146,7 @@ public class SistemaBanco {
                                     +"============================\n"
                                     + "Minimo: $1000\n"
                                     + "Maximo: $200000\n"
-                                    +"============================\n"
+                                    +"---------------------------"
                             );
                             giroDinero = input.nextInt();
                             saldoInicial = giroDinero; 
@@ -157,15 +181,17 @@ public class SistemaBanco {
                             saldoFinal = saldoInicial - giroDinero;
                             System.out.println("El maximo de dinero a entregar es: " + saldoFinal);
                         }
+                         
                          do {
                              
                             System.out.println("=============================\n"
                                  + "¿Desea realizar la operacion?\n"
-                                 + "=============================\n"
+                                 + "---------------------------\n"
                                  + "1. SI\n"
                                  + "2. NO"
                                     
                              );
+                            
                             realizar = input.nextInt();
                          
                         } while (realizar != 1 && realizar !=2);
@@ -174,7 +200,7 @@ public class SistemaBanco {
                          
                             totalSaldo = totalSaldo - saldoFinal;
                              
-                            System.out.println("|=============================================|\n"
+                            System.out.println("|=====================================================================|\n"
                             +  "La cantidad de billetes de $20000 a entregar es: " + veinteMil + "\n"
                             +  "La cantidad de billetes de $10000 a entregar es: " + diezMil +"\n"
                             +  "La cantidad de billetes de $5000 a entregar es: " + cincoMil +"\n"
@@ -191,9 +217,13 @@ public class SistemaBanco {
                      
                         do {
                             
-                            System.out.println("Su saldo actual es " + totalSaldo + "\n"
-                                +"============================================\n"
-                                + "Ingrese el monto a depositar "
+                            System.out.println("============================================\n"
+                                + "Ingrese el monto a depositar\n"
+                                +"============================\n"
+                                + "Minimo: $1000\n"
+                                + "Maximo: $200000\n"
+                                +"---------------------------"
+                                    
                             );
                         
                             depositoDinero = input.nextInt();
@@ -207,7 +237,7 @@ public class SistemaBanco {
                             }else{
                             
                                 System.out.println("Monto a depositar es incorrecto\n "
-                                + "Debe ser un valor entre 1000$ y 200000$"
+                                + "El valor debe estar entre 1000$ y 200000$"
                                 +"============================================"
                                 );
                             }
@@ -218,120 +248,149 @@ public class SistemaBanco {
 
                     case 4 -> {
                         
-                        tries = 1;
+                        intentos = 0;
                         
                         System.out.println("Ingrese clave actual");
-                        password = input.next();
+                        password = input.nextInt();
                         
                         do{
-                        
-                            if (password.equals(contraseña)){
+                            
+                            if (password != contraseña){
                                 
-                               cambioClave = true;
-                               tries = 4;
-                            }
-                            
-                            else
-                            
-                            { 
-                               tries++;
-                               System.out.println("clave incorrecta\n"
-                              +"Intentos restantes: "+ (5 - tries) + "\n" 
-                              +"=========================\n"        
-                              +"Ingrese clave");
+                                intentos++;
+
+                                System.out.println("clave incorrecta\n"
+                                +"Intentos restantes: "+ (3 - intentos) + "\n" 
+                                +"=========================\n"        
+                                +"Ingrese clave\n"
+                                +"---------------------------"
+                                );
                                
-                               password = input.next();
+                               password = input.nextInt();
                                
                             }
+                        
+                            if (password == contraseña){
+                                
+                               confirmadorCambioClave = true;
+                               intentos = 2;
+                            }
                             
-                        }while(tries < 4); 
+                        }while(intentos < 2); 
                         
+                        intentos = 0;
                         
-                         tries = 4;
-                        
-                        if (cambioClave == true){
+                        if (confirmadorCambioClave == true){
+                            System.out.println("=============================");
+                            
+                            cambioClave = 0;
                             
                             do{
-                        
-
+                       
                                 System.out.println("Ingrese nueva clave\n"
-                                +"========================\n"
-                                +"Clave debe de tener 4 digitos\n"
-                                +"========================"
+                                +"\n"
+                                +"Clave debe tener 4 digitos\n"
+                                +"---------------------------"
                                 );
                                 
-                                password = input.next();
+                                password = input.nextInt();
                                 
-                                System.out.println("Ingrese clave nuevamente\n"
-                                +"========================"
+                                System.out.println("========================\n"
+                                +"Ingrese clave nuevamente\n"
+                                +"---------------------------"
                                 );
                                 
-                                confirmadorClave = input.next();
+                                confirmadorClave = input.nextInt();
                                 
-                                if (password.equals(confirmadorClave)){
+                                claveATexto = String.valueOf(password);
+
+                                
+                                if (password != confirmadorClave){
+
+                                    System.out.println("==================================\n"
+                                    +"Claves no coinciden\n"
+                                    + "==================================");
                                     
-                                    if (password.length() == 4){
+                                }else{
+                                    
 
-                                        contraseña = password;
-                                        System.out.println("=======================\n"
-                                                + "Cambio exitoso"
+                                    if (claveATexto.length() != 4){
+
+                                        System.out.println("Nueva clave invalida\n"
+                                        + "=================================="
                                         );
-                                        tries = 0;
+                                        
+                                    }else{
+                                        
+                                        do {
+                                            
+                                            System.out.println("¿Desea realizar el cambio?\n"
+                                            + "1.SI\n"
+                                            + "2.NO\n"
+                                            + "3.SALIR\n"
+                                            +"---------------------------"    
+                                            );
+                                            cambioClave = input.nextInt();
+                                            
+                                        } while (cambioClave != 1 && cambioClave != 2 && cambioClave != 3);
 
-                                    } else{
-
-                                        tries--;
-
-                                        System.out.println("Clave erronea\n"
-                                                + "Intentos disponibles: " + tries +"\n"
-                                                + "=================================="
-                                        );
+                                        
+                                        if (cambioClave == 1) {
+                                            contraseña = password;
+                                            System.out.println("=======================\n"
+                                            + "Cambio exitoso"
+                                            );
+                                        }
+                                        
 
                                     }
                                     
-                                } else{
-                                
-                                tries--;
-
-                                        System.out.println("Clave no coincide\n"
-                                                + "Intentos disponibles: " + tries +"\n"
-                                                + "=================================="
-                                        );
-                                
                                 }
-                                
-                            }while(tries > 0);
-                        }
-                                                    
-                    }
+ 
+                            }while(cambioClave != 1 && cambioClave != 3);
+                            
+                        }   
+                        
+                    }   
+   
                     
                 }
-                
-                do {
-                    
-                } while (otraOperacion != 1 && otraOperacion != 2);
-                System.out.println("¿Desea realizar otra operacion?\n"
-                        + "1. SI\n"
-                        + "2. NO\n"
-                );
-                
-               otraOperacion = input.nextInt();
-               
-               if (otraOperacion == 2){
-               
-                   opcion = 5;
-                   
-               }
-                
-            } while (opcion != 5);
             
-            System.out.println("BYE BYE");
+                if (opcion != 5) {
+                    
+                    do {
+                    
+                        System.out.println("¿Desea realizar otra operacion?\n"
+                        + "1. SI\n"
+                        + "2. NO\n"    
+                        +"---------------------------"
+
+                        );
+
+                       otraOperacion = input.nextInt();
+
+                       if (otraOperacion == 2){
+
+                           opcion = 5;
+
+                        }
+               
+                    } while (otraOperacion != 1 && otraOperacion != 2);
+                    
+                }
+         
+        } while (opcion != 5);
+            
+            
+        System.out.println("BYE BYE");
             
         }else {
         
-            System.out.println("Tarjeta bloqueada bloqueada\n"
+            System.out.println("===================================\n"
+                    +"Su tarjeta a sido bloqueada \n"
                     + "==============================\n"
                     + "Dirigase a su banco para desbloquear");
+            
         }
     }
 }
