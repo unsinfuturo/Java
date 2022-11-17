@@ -1,12 +1,14 @@
-package com.mycompany.sistemabanco;
+package sistemabanco;
 
 import java.util.Scanner;
 
 public class SistemaBanco {
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
       
-
         String usuario = "yo";
         String usuarioComparador = "";
         String claveATexto;
@@ -14,10 +16,10 @@ public class SistemaBanco {
         boolean inicioCorrecto = false;
         boolean confirmadorCambioClave = false;
         
-        int contraseña = 2410;
+        int contraseÃ±a = 2410;
         int confirmarCambioClave = 0;
-        int contraseñaComparador;
-        int comparadorNuevaContraseña;
+        int contraseÃ±aComparador;
+        int comparadorNuevaContraseÃ±a;
         int intentos = 0;
         int opcion = 0;
         int giroDinero = 0;
@@ -32,7 +34,7 @@ public class SistemaBanco {
         int totalSaldo = 1000000;
         int depositoDinero = 0;
         int otraOperacion = 0;
-        
+        int confirmarDeposito = 0;
        
         
         
@@ -52,7 +54,7 @@ public class SistemaBanco {
         System.out.println("Ingrese clave\n"
         +"---------------------------"
         );
-        contraseñaComparador = input.nextInt();
+        contraseÃ±aComparador = input.nextInt();
         
         do {
             
@@ -71,11 +73,11 @@ public class SistemaBanco {
                 System.out.println("Ingrese clave\n"
                 +"---------------------------"
                 );
-                contraseñaComparador = input.nextInt();
+                contraseÃ±aComparador = input.nextInt();
                 
             }else{
             
-                if (contraseñaComparador != contraseña){
+                if (contraseÃ±aComparador != contraseÃ±a){
                 
                     intentos++;
                     
@@ -85,7 +87,7 @@ public class SistemaBanco {
                     System.out.println("Ingrese clave\n"
                     +"---------------------------"
                     );
-                    contraseñaComparador = input.nextInt();
+                    contraseÃ±aComparador = input.nextInt();
 
                 }
                 
@@ -94,7 +96,7 @@ public class SistemaBanco {
             
             if (usuarioComparador.equals(usuario)){ 
                 
-                if (contraseñaComparador == contraseña){
+                if (contraseÃ±aComparador == contraseÃ±a){
                     
                   inicioCorrecto = true;
                   intentos = 4;
@@ -187,7 +189,7 @@ public class SistemaBanco {
                          do {
                              
                             System.out.println("=============================\n"
-                            + "¿Desea realizar la operacion?\n"
+                            + "Â¿Desea realizar la operacion?\n"
                             + "---------------------------\n"
                             + "1. SI\n"
                             + "2. NO"
@@ -221,7 +223,7 @@ public class SistemaBanco {
                             
                             System.out.println("============================================\n"
                                 + "Ingrese el monto a depositar\n"
-                                +"============================\n"
+                                +"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
                                 + "Minimo: $1000\n"
                                 + "Maximo: $200000\n"
                                 +"---------------------------"
@@ -230,21 +232,40 @@ public class SistemaBanco {
                         
                             depositoDinero = input.nextInt();
                             
-                            if (depositoDinero > 1000 && depositoDinero < 200000){
+                            if (depositoDinero >= 1000 && depositoDinero <= 200000){
                             
-                                totalSaldo = totalSaldo + depositoDinero;
-                                System.out.println("Saldo despues de el deposito: " +  totalSaldo);
+                                System.out.println("============================================\n"
+                                +"Saldo despues de el deposito: " +  (totalSaldo + depositoDinero) 
+                                );
                                 
-                              
+                                do {
+                             
+                                    System.out.println("=============================\n"
+                                    + "Â¿Desea realizar la operacion?\n"
+                                    + "1. SI\n"
+                                    + "2. NO\n"
+                                    + "---------------------------"
+                                    );
+
+                                    confirmarDeposito = input.nextInt();
+
+                                } while (confirmarDeposito != 1 && confirmarDeposito !=2);
+                                
+                                if (confirmarDeposito == 1){
+                                
+                                    totalSaldo = totalSaldo + depositoDinero;
+                                    
+                                }
+                                
                             }else{
                             
-                                System.out.println("Monto a depositar es incorrecto\n "
-                                + "El valor debe estar entre 1000$ y 200000$"
-                                +"============================================"
+                                System.out.println("Monto a depositar es invalido\n"
+                                +"============================================\n"
+                                +"El valor debe estar entre $1000 y $200000"
                                 );
                             }
                             
-                         }while (depositoDinero < 1000 || depositoDinero > 200000);
+                         }while ((depositoDinero < 1000) || (depositoDinero > 200000));
                         
                     }
 
@@ -253,11 +274,11 @@ public class SistemaBanco {
                         intentos = 0;
                         
                         System.out.println("Ingrese clave actual");
-                        contraseñaComparador = input.nextInt();
+                        contraseÃ±aComparador = input.nextInt();
                         
                         do{
                             
-                            if (contraseñaComparador != contraseña){
+                            if (contraseÃ±aComparador != contraseÃ±a){
                                 
                                 intentos++;
 
@@ -268,11 +289,11 @@ public class SistemaBanco {
                                 +"---------------------------"
                                 );
                                
-                               contraseñaComparador = input.nextInt();
+                               contraseÃ±aComparador = input.nextInt();
                                
                             }
                         
-                            if (contraseñaComparador == contraseña){
+                            if (contraseÃ±aComparador == contraseÃ±a){
                                 
                                confirmadorCambioClave = true;
                                intentos = 2;
@@ -295,19 +316,19 @@ public class SistemaBanco {
                                 +"---------------------------"
                                 );
                                 
-                                contraseñaComparador = input.nextInt();
+                                contraseÃ±aComparador = input.nextInt();
                                 
                                 System.out.println("========================\n"
                                 +"Ingrese clave nuevamente\n"
                                 +"---------------------------"
                                 );
                                 
-                                comparadorNuevaContraseña = input.nextInt();
+                                comparadorNuevaContraseÃ±a = input.nextInt();
                                 
-                                claveATexto = String.valueOf(contraseñaComparador);
+                                claveATexto = String.valueOf(contraseÃ±aComparador);
 
                                 
-                                if (contraseñaComparador != comparadorNuevaContraseña){
+                                if (contraseÃ±aComparador != comparadorNuevaContraseÃ±a){
 
                                     System.out.println("==================================\n"
                                     +"Claves no coinciden\n"
@@ -326,19 +347,18 @@ public class SistemaBanco {
                                         
                                         do {
                                             
-                                            System.out.println("¿Desea realizar el cambio?\n"
+                                            System.out.println("Â¿Desea realizar el cambio?\n"
                                             + "1.SI\n"
                                             + "2.NO\n"
-                                            + "3.SALIR\n"
                                             +"---------------------------"    
                                             );
                                             confirmarCambioClave = input.nextInt();
                                             
-                                        } while (confirmarCambioClave != 1 && confirmarCambioClave != 2 && confirmarCambioClave != 3);
+                                        } while (confirmarCambioClave != 1 && confirmarCambioClave != 2);
 
                                         
                                         if (confirmarCambioClave == 1) {
-                                            contraseña = contraseñaComparador;
+                                            contraseÃ±a = contraseÃ±aComparador;
                                             System.out.println("=======================\n"
                                             + "Cambio exitoso"
                                             );
@@ -349,9 +369,19 @@ public class SistemaBanco {
                                     
                                 }
  
-                            }while(confirmarCambioClave != 1 && confirmarCambioClave != 3);
+                            }while(confirmarCambioClave != 1 && confirmarCambioClave != 2);
                             
-                        }   
+                        }else{
+                        
+                            System.out.println("===================================\n"
+                            +"Su tarjeta a sido bloqueada \n"
+                            + "===================================\n"
+                            + "Dirigase a su banco para desbloquear"
+                            );
+                            
+                            opcion = 5;
+
+                        } 
                         
                     }   
    
@@ -362,7 +392,7 @@ public class SistemaBanco {
                     
                     do {
                     
-                        System.out.println("¿Desea realizar otra operacion?\n"
+                        System.out.println("Â¿Desea realizar otra operacion?\n"
                         + "1. SI\n"
                         + "2. NO\n"    
                         +"---------------------------"
@@ -389,10 +419,11 @@ public class SistemaBanco {
         }else {
         
             System.out.println("===================================\n"
-                    +"Su tarjeta a sido bloqueada \n"
-                    + "==============================\n"
-                    + "Dirigase a su banco para desbloquear");
-            
+            +"Su tarjeta a sido bloqueada \n"
+            + "===================================\n"
+            + "Dirigase a su banco para desbloquear");
+
         }
     }
+    
 }
