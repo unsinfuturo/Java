@@ -1,0 +1,47 @@
+
+package javaapplication32;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class JavaApplication32 {
+
+    public static void main(String[] args) {
+        
+        String palabra;
+        String palabraMinuscula;
+        int largo;
+        String letra;
+        
+        Scanner input = new Scanner(System.in);
+
+        
+        System.out.println("              AHORCATE WEON\n"
+                + "======================================="
+        );
+        palabra = input.next();
+              palabraMinuscula = palabra.toLowerCase();
+        
+        
+        largo = palabra.length();  
+        char palabraChar[] = new char[largo]; 
+
+        for (int i = 0; i < largo; i++) {
+            palabraChar[i] = palabra.charAt(i);
+        }
+        
+        System.out.println("Ingrese letra");
+        
+        for (int i = 0; i < 100; i++) {
+            System.out.println("\n");
+        }
+        
+        System.out.println("-------------------\n"
+                + "-                     -");
+        System.out.println("Ingrese una letra");
+        letra = input.next();
+        
+        
+    }
+}
+ 
