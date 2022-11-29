@@ -1,0 +1,29 @@
+
+package javaapplication32;
+
+import java.util.Arrays;
+
+public class JavaApplication32 {
+
+    public static void main(String[] args) {
+        
+    	String s = "Hola mundo CHILE";
+    	
+        /**hace todo chiquito**/
+    	System.out.println(s.toLowerCase());
+        
+        /**hace todo grande**/
+        System.out.println(s.toUpperCase());
+        
+        String str = "capital de chile";
+        
+        /** hace solo la primera grande **/
+        str = str.substring(0,1).toUpperCase() + str.substring(1);
+        
+        System.out.println(str);
+       
+        
+        
+    }
+}
+ 
