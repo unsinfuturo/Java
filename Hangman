@@ -1,47 +1,137 @@
 
-package javaapplication32;
+package com.mycompany.hangman;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class JavaApplication32 {
+
+public class HANGMAN {
 
     public static void main(String[] args) {
-        
-        String palabra;
-        String palabraMinuscula;
-        int largo;
-        String letra;
-        
         Scanner input = new Scanner(System.in);
+        
+        int correcta = 0;
+        int intentos = 0;
+        String seleccionRandom = "";
+        String letra;
+        char letraChar;
+        boolean autorizarContador = true;
+        
+        
+        
+        // Crea un valor random entero del 0   al 9
+        int seleccionAzar = (int)(Math.random() * 9); 
+        
+        
+        switch (seleccionAzar) {
+            
+            case 0 -> {
+                seleccionRandom = "Esquizofrenico";
+            }
+            
+            case 1 -> {
+                seleccionRandom = "Programador";
+            }
+            
+            case 2 -> {
+                seleccionRandom = "Dominar";
+            }
+            
+            case 3 -> {
+                seleccionRandom = "Todo";
+            }
+            
+            case 4-> {
+                seleccionRandom = "Mundo";
+            }
+            
+            case 5 -> {
+                seleccionRandom = "Soledad";
+            }
+            
+            case 6 -> {
+                seleccionRandom = "Aislamiento";
+            }
+            
+            case 7 -> {
+                seleccionRandom = "Voluntario";
+            }
+            
+            case 8 -> {
+                seleccionRandom = "Deidad";
+            }
+            
+            case 9 -> {
+                seleccionRandom = "Sol";
+            }
 
-        
-        System.out.println("              AHORCATE WEON\n"
-                + "======================================="
-        );
-        palabra = input.next();
-              palabraMinuscula = palabra.toLowerCase();
-        
-        
-        largo = palabra.length();  
-        char palabraChar[] = new char[largo]; 
-
-        for (int i = 0; i < largo; i++) {
-            palabraChar[i] = palabra.charAt(i);
+            
         }
         
-        System.out.println("Ingrese letra");
+        // Pasar a minuscula las palabras seleccionandas
+        seleccionRandom = seleccionRandom.toLowerCase();
         
-        for (int i = 0; i < 100; i++) {
-            System.out.println("\n");
+        //dividimos letras para comparacion mediante .charAt y las ponemos en el Array 
+        char letraSeleccion[] = new char[seleccionRandom.length()];
+        for (int i = 0; i < seleccionRandom.length(); i++) {
+                    letraSeleccion[i] = seleccionRandom.charAt(i);
         }
         
-        System.out.println("-------------------\n"
-                + "-                     -");
-        System.out.println("Ingrese una letra");
-        letra = input.next();
+        //array con "_" por cada caracter
+        char slashBajo[] = new char[seleccionRandom.length()];
+        
+        //llenar array con "_"
+        for (int i = 0; i < seleccionRandom.length(); i++) {
+            slashBajo[i] = '_';
+        }
+        
+        //Inicio del juego
+        do {
+            
+            //cantidad de caracteres mediante "_"
+            for (int i = 0; i < seleccionRandom.length(); i++) {
+                System.out.print(slashBajo[i] + " ");
+            }
+            
+            System.out.println(seleccionRandom);
+            
+            for (int i = 0; i < 4; i++) {
+                System.out.println("\n");
+            }
+            
+            System.out.println("- - - - - - - - - - - - Ingrese una letra - - - - - - - - - - - -");
+            // no existe next"CHAR" asi que lo usare para luego transformarlo mediante un .charAt
+            letra = input.next();
+            letraChar = letra.charAt(0);
+            
+            /*lo utilizo para que solo se actualize una vez el contador, porque
+             *si lo pongo el la comparacion se repetiria multiples veces
+            */
+            autorizarContador = true;
+            
+            //comparacion 
+            for (int j = 0; j < seleccionRandom.length(); j++) {
+                            
+                if (letraSeleccion[j] == letraChar) {
+
+                    slashBajo[j] = letraChar;
+                    correcta ++;
+                    autorizarContador = false;
+  
+                }
+                   
+            }
+            
+            if (autorizarContador == true) {
+                
+                intentos++;
+                
+            }
+            
+        } while (intentos < 6 && correcta != seleccionRandom.length());
+       
         
         
-    }
+        
+    }   
+    
 }
- 
