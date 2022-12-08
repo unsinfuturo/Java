@@ -1,4 +1,3 @@
-
 package com.mycompany.hangman;
 
 import java.util.Scanner;
@@ -13,11 +12,10 @@ public class HANGMAN {
         int intentos = 0;
         String seleccionRandom = "";
         String letra;
+        String letrasUsadas = "";
         char letraChar;
         boolean autorizarContador = true;
-        
-        
-        
+        boolean repetido = false;
         // Crea un valor random entero del 0   al 9
         int seleccionAzar = (int)(Math.random() * 9); 
         
@@ -73,7 +71,7 @@ public class HANGMAN {
         //dividimos letras para comparacion mediante .charAt y las ponemos en el Array 
         char letraSeleccion[] = new char[seleccionRandom.length()];
         for (int i = 0; i < seleccionRandom.length(); i++) {
-                    letraSeleccion[i] = seleccionRandom.charAt(i);
+            letraSeleccion[i] = seleccionRandom.charAt(i);
         }
         
         //array con "_" por cada caracter
@@ -99,9 +97,67 @@ public class HANGMAN {
             }
             
             System.out.println("- - - - - - - - - - - - Ingrese una letra - - - - - - - - - - - -");
-            // no existe next"CHAR" asi que lo usare para luego transformarlo mediante un .charAt
-            letra = input.next();
-            letraChar = letra.charAt(0);
+            
+            /*Cosas a comprobar:
+             * Si la letra ya se repitio
+             * Si tiene mas de una letra
+             * Si es algo diferente a una letra
+            */
+            do {
+                
+                repetido = false;
+
+                // no existe next"CHAR" asi que lo usare para luego transformarlo mediante un .charAt
+                letra = input.next();
+                letraChar = letra.charAt(0);
+                
+                //repetida
+                
+                //crear Char array de lista de letras usadas para comparar
+                char letrasUsadasChar[] = new char[letrasUsadas.length()];
+                
+                //llenar ese Char con las letras
+                for (int i = 0; i < letrasUsadas.length(); i++) {
+                    letrasUsadasChar[i] = letrasUsadas.charAt(i);
+                }
+                
+                //chekeamos si esta en la lista
+                for (int i = 0; i < letrasUsadas.length(); i++) {
+                    if (letraChar == letrasUsadasChar[i]) {
+                        repetido = true;
+                    }
+                }
+                
+                //si se repitio la letra entonces enviamos el mensaje sino simplemente la agregamos 
+                if (repetido == true) {
+                  letrasUsadas = letrasUsadas + letra;
+                    System.out.println(letrasUsadas);
+                }
+                // slash es default asi que hay que comprobarlo para que no aparezcan 2 mensajes
+                if (repetido == true && letraChar != '_') {
+                    System.out.println("Letra ya usada");
+                }
+                
+                //1 letra
+                if (letra.length() != 1) {
+                    
+                    repetido = true;
+                    System.out.println("Ingresar solo 1 letra");
+                }
+                
+                //solo letras
+                if (!Character.isAlphabetic(letraChar)) {
+                    repetido = true;
+                    System.out.println("Caracter no valido, Ingrese solo letras");
+                }
+                
+                //lista de letras usadas
+                if (Character.isAlphabetic(letraChar) && repetido == false) {
+                    letrasUsadas = letrasUsadas + letra;
+                }
+                
+            } while (repetido == true);
+           
             
             /*lo utilizo para que solo se actualize una vez el contador, porque
              *si lo pongo el la comparacion se repetiria multiples veces
@@ -129,8 +185,6 @@ public class HANGMAN {
             
         } while (intentos < 6 && correcta != seleccionRandom.length());
        
-        
-        
         
     }   
     
