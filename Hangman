@@ -85,9 +85,11 @@ public class HANGMAN {
         //Inicio del juego
         do {
             
+            for (int i = 0; i < 50; i++) {
+                System.out.println("\n");
+            }
+            
             System.out.println("- - - - - - - - - - - - Hang Man - - - - - - - - - - - -\n"
-                + "\n"
-                + "\n"
             );
 
         
@@ -98,87 +100,90 @@ public class HANGMAN {
                 case 0 -> {
                 
                     System.out.println("\n"
-                        +"\n"
                         +"\n"    
                         +"\n"    
                         +"\n"
-                        +"\n"    
+                        +"\n" 
+                        +"\n"
+                        +""
                     );
                 
                 }
                 
                 case 1 -> {
                     
-                    System.out.println("\n"
-                        +    "\n"
-                        +    "\n"
-                        +    "\n"
-                        +    " _ _ _ _ _ _ _ _ \n"
-                        +    "|               |"
+                    System.out.println("                \n"
+                        +    "                \n"
+                        +    "                \n"
+                        +    "                \n"
+                        +    "                \n"
+                        +    "                    _ _ _ _ _ _ _ _ \n"
+                        +    "                   |               |"
                     );
                     
                 }
                 
                 case 2 ->{
                     
-                    System.out.println("|       \n" 
-                        +    "|       \n" 
-                        +    "|     \n" 
-                        +    "|      \n" 
-                        +    "|_ _ _ _ _ _ _ _ \n" 
-                        +    "|               |"
+                    System.out.println("\n" 
+                        +    "                   |       \n" 
+                        +    "                   |     \n" 
+                        +    "                   |      \n" 
+                        +    "                   |       \n"
+                        +    "                   |_ _ _ _ _ _ _ _ \n" 
+                        +    "                   |               |"
                     );
                     
                 }
                 
                 case 3 ->{
                     
-                    System.out.println(" _ _ _ _ \n" 
-                        +   "|       |\n"
-                        +   "|       \n" 
-                        +   "|     \n" 
-                        +   "|      \n" 
-                        +   "|_ _ _ _ _ _ _ _\n" 
-                        +   "|               |"
+                    System.out.println("                    _ _ _ _ \n" 
+                        +   "                   |       |\n"
+                        +   "                   |       \n" 
+                        +   "                   |     \n" 
+                        +   "                   |      \n" 
+                        +   "                   |_ _ _ _ _ _ _ _\n" 
+                        +   "                   |               |"
                     );
                     
                 }
                 
                 case 4 ->{
                 
-                    System.out.println(" _ _ _ _ \n" 
-                        +    "|       |\n" 
-                        +    "|       o\n" 
-                        +    "|     \n"
-                        +    "|      \n" 
-                        +    "|_ _ _ _ _ _ _ _\n" 
-                        +    "|               |"
+                    System.out.println("                    _ _ _ _ \n" 
+                        +    "                   |       |\n" 
+                        +    "                   |       o\n" 
+                        +    "                   |     \n"
+                        +    "                   |      \n" 
+                        +    "                   |_ _ _ _ _ _ _ _\n" 
+                        +    "                   |               |"
                     );
                     
                 }
                 
                 case 5 ->{
                 
-                    System.out.println(" _ _ _ _ \n" 
-                        +    "|       |\n" 
-                        +    "|       o\n" 
-                        +    "|       |\n" 
-                        +    "|      \n" 
-                        +    "|_ _ _ _ _ _ _ _\n" 
-                        +    "|               |"
+                    System.out.println("                    _ _ _ _ \n" 
+                        +    "                   |       |\n" 
+                        +    "                   |       o\n" 
+                        +    "                   |       |\n" 
+                        +    "                   |      \n" 
+                        +    "                   |_ _ _ _ _ _ _ _\n" 
+                        +    "                   |               |"
                     );
                     
                 }
                 
                 case 6 ->{
                 
-                    System.out.println(" _ _ _ _ \n" 
-                        +    "|       |\n" 
-                        +    "|       o\n" 
-                        +    "|      /|\\\n" 
-                        +    "|      \n" 
-                        +    "|_ _ _ _ _ _ _ _\n" 
-                        +    "|               |"
+                    System.out.println("                    _ _ _ _ \n" 
+                        +    "                   |       |\n" 
+                        +    "                   |       o\n" 
+                        +    "                   |      /|\\\n" 
+                        +    "                   |      \n" 
+                        +    "                   |_ _ _ _ _ _ _ _\n" 
+                        +    "                   |               |"
                     );
                     
                 }
@@ -186,18 +191,25 @@ public class HANGMAN {
                 default -> throw new AssertionError();
             }
             
+            System.out.println("\n"
+                +   "\n"
+            );
+            
+            //espacio para que que los "_" queden centrados
+            System.out.print("                    ");
+            
             //cantidad de caracteres mediante "_"
             for (int i = 0; i < seleccionRandom.length(); i++) {
                 System.out.print(slashBajo[i] + " ");
-            }
+            }  
             
-            System.out.println(seleccionRandom);
+            System.out.println("\n");
             
-            for (int i = 0; i < 4; i++) {
-                System.out.println("\n");
-            }
             
-            System.out.println("- - - - - - - - - - - - Ingrese una letra - - - - - - - - - - - -");
+            System.out.println("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =\n"
+                +   "Intentos restantes: " + (7 - intentos) + "       |    Letras usadas:[ " + letrasUsadas + " ]\n"
+                +   "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
+                    );
             
             /*Cosas a comprobar:
              * Si la letra ya se repitio
@@ -207,7 +219,9 @@ public class HANGMAN {
             do {
                 
                 repetido = false;
-
+                
+                //Ingreso de letra
+                System.out.print("Ingrese letra: ");
                 // no existe next"CHAR" asi que lo usare para luego transformarlo mediante un .charAt
                 letra = input.next();
                 letraChar = letra.charAt(0);
@@ -229,11 +243,6 @@ public class HANGMAN {
                     }
                 }
                 
-                //si se repitio la letra entonces enviamos el mensaje sino simplemente la agregamos 
-                if (repetido == true) {
-                  letrasUsadas = letrasUsadas + letra;
-                    System.out.println(letrasUsadas);
-                }
                 // slash es default asi que hay que comprobarlo para que no aparezcan 2 mensajes
                 if (repetido == true && letraChar != '_') {
                     System.out.println("Letra ya usada");
@@ -252,8 +261,12 @@ public class HANGMAN {
                     System.out.println("Caracter no valido, Ingrese solo letras");
                 }
                 
-                //lista de letras usadas
-                if (Character.isAlphabetic(letraChar) && repetido == false) {
+                /*si se repitio la letra entonces enviamos el mensaje sino simplemente la agregamos 
+                 *Lo ponemos abajo para que no se grabe si es caracter o mas de 1
+                */
+                if (repetido == true) {
+                    System.out.println(letrasUsadas);
+                }else{
                     letrasUsadas = letrasUsadas + letra;
                 }
                 
@@ -286,27 +299,33 @@ public class HANGMAN {
             
         } while (intentos < 7 && correcta != seleccionRandom.length());
        
+        
+        for (int i = 0; i < 50; i++) {
+             System.out.println("\n");
+        }
+        
+        //si se gana entonces no tendria 7 
         if (intentos == 7) {
             
-            System.out.println(" _ _ _ _                     _____                         ____\n" 
-                +    "|       |                   / ____|                       / __ \\\n" 
-                +    "|       o                  | |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __           La palabra era\n" 
-                +    "|      /|\\                 | | |_ |/ _` | '_ ` _ \\ / _ \\ | |  | \\ \\ / / _ \\ '__|            [" + seleccionRandom + "]\n" 
-                +    "|      / \\                 | |__| | (_| | | | | | |  __/ | |__| |\\ V /  __/ |\n" 
-                +    "|_ _ _ _ _ _ _ _	    \\_____|\\__,_|_| |_| |_|\\___|  \\____/  \\_/ \\___|_|\n" 
-                +    "|               |"
+            System.out.println("                    _ _ _ _                     _____                         ____\n" 
+                +    "                   |       |                   / ____|                       / __ \\\n" 
+                +    "                   |       o                  | |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __           La palabra era\n" 
+                +    "                   |      /|\\                 | | |_ |/ _` | '_ ` _ \\ / _ \\ | |  | \\ \\ / / _ \\ '__|            [" + seleccionRandom + "]\n" 
+                +    "                   |      / \\                 | |__| | (_| | | | | | |  __/ | |__| |\\ V /  __/ |\n" 
+                +    "                   |_ _ _ _ _ _ _ _	      \\_____|\\__,_|_| |_| |_|\\___|  \\____/  \\_/ \\___|_|\n" 
+                +    "                   |               |"
             );
             
         }else{
             
-            System.out.println(" __     ______  _    _  __          _______ _   _ \n" 
-                +    " \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n" 
-                +    "  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |                 La palabra era\n" 
-                +    "   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |                   [" + seleccionRandom + "]\n"
-                +    "    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n" 
-                +    "    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|\n" 
-                +    "                                                  \n" 
-                +    "                                                  " 
+            System.out.println("                     __     ______  _    _  __          _______ _   _ \n" 
+                +    "                          \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n" 
+                +    "                           \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |                 La palabra era\n" 
+                +    "                            \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |                   [" + seleccionRandom + "]\n"
+                +    "                             | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n" 
+                +    "                             |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|\n" 
+                +    "                                                                           \n" 
+                +    "                                                                           " 
             );
             
         }
@@ -314,5 +333,4 @@ public class HANGMAN {
     }   
     
 }
-
 
