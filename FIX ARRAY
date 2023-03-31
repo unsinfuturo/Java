@@ -1,0 +1,15 @@
+        for (int j = 0; j < nom.length - 2; j++) {
+            
+            for (int i = 0; i < nom.length - 1; i++) {
+    
+                if (sueldoB[i] < sueldoB[i+1]) {
+                    
+                    guardar = x[i];
+                    x[i] = x[i+1];  
+                    x[i + 1] = guardar;
+                    
+                }
+                
+            }
+            
+         }
